@@ -1,5 +1,6 @@
 import random
-import timeit
+import time as t
+import math 
 
 input = [31, -41, 59, 26, -53, 58, 97, -93, -23]
 
@@ -11,18 +12,19 @@ def alg1(list):
     for i in range(ll):
         for j in range(i, ll):
             if sum(list[i:j+1]) > max_win:
-                si = i
-                ei = j
                 max_win = sum(list[i:j+1])
-    
-    print(max([0] + [sum(list[start:end + 1]) for start in range(len(list)) for end in range(start, len(list))]))
-    print(si)
-    print(ei)
     print(max_win)
     
-
-
+    
+def list_comprehention(list):
+    print(max([0] + [sum(list[s:e + 1]) for s in range(len(list)) for e in range(s, len(list))]))
 
 
 if __name__ == '__main__':
-    alg1(input)
+    for i in range(5):
+        sample = [random.randint(-100, 100) for _ in range(9*2**i)]
+        print (9*2**i)
+        start = t.time()
+        list_comprehention(sample)
+        end = t.time()
+        print(end-start)

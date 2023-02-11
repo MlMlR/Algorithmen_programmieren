@@ -18,18 +18,21 @@ def list_comprehention(list):
     print(max([0] + [sum(list[s:e + 1]) for s in range(len(list)) for e in range(s, len(list))]))
 
 def kadanes_algorithm(list):
-    max = so_far = 0
+    max = 0
+    max_so_far = 0
     for i in range(len(list)):
-        so_far = max(0, so_far + list[i])
-        max = max(max, so_far)
-    print(max)
+        max_so_far = max_so_far + list[i]
+        if max_so_far < 0:
+            max_so_far = 0
+        if max_so_far > max:
+            max = max_so_far
     
     
 if __name__ == '__main__':
-    for i in range(10):
+    for i in range(20):
         sample = [random.randint(-100, 100) for _ in range(9*2**i)]
         print (9*2**i)
         start = t.time()
-        kadanes_algorithm(input)
+        kadanes_algorithm(sample)
         end = t.time()
         print(end-start)
